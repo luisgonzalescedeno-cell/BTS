@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BTS · 방탄소년단</title>
+<style>
+:root{--p1:#b388ff;--p2:#7c3aed;--p3:#ff7ad9;--p4:#7df9ff;--tx:#f6efff;--mu:#c3a9f0}
+*{box-sizing:border-box;margin:0;padding:0}
+html{font-size:clamp(16px,1.3vw,23px)}
+html,body{height:100%;overflow:hidden;color:var(--tx);font-family:'Segoe UI','Malgun Gothic','Apple SD Gothic Neo',system-ui,sans-serif;background:radial-gradient(ellipse at 50% 125%,#6a22d0 0%,#250a5a 38%,#0d0224 75%)}
+#cv{position:fixed;inset:0;pointer-events:none}
+.beam{position:fixed;top:-5vh;width:46vw;height:125vh;background:linear-gradient(to bottom,rgba(190,150,255,.4),transparent 78%);clip-path:polygon(46% 0,54% 0,100% 100%,0 100%);transform-origin:50% 0;mix-blend-mode:screen;pointer-events:none;animation:sw 9s ease-in-out infinite alternate}
+.b1{left:-8vw;--a:-24deg;--b:18deg}.b2{left:27vw;--a:14deg;--b:-14deg;animation-duration:11s;background:linear-gradient(to bottom,rgba(255,122,217,.32),transparent 78%)}.b3{left:62vw;--a:-16deg;--b:26deg;animation-duration:8s;background:linear-gradient(to bottom,rgba(125,249,255,.25),transparent 78%)}
+@keyframes sw{from{transform:rotate(var(--a))}to{transform:rotate(var(--b))}}
+#fx{position:fixed;inset:0;background:radial-gradient(circle,#fff,#b388ff 40%,transparent 70%);opacity:0;pointer-events:none;z-index:25}
+#fx.go{animation:fl .6s}@keyframes fl{30%{opacity:.7}}
+.sl{position:absolute;inset:0;padding:6vh 7vw 18vh;display:flex;flex-direction:column;justify-content:center;opacity:0;visibility:hidden;transform:scale(.93);filter:blur(14px);transition:all .75s cubic-bezier(.2,.8,.2,1);overflow-y:auto}
+.sl.on{opacity:1;visibility:visible;transform:none;filter:none}
+.sl.out{transform:scale(1.1)}
+.sl.on .a{animation:up .8s backwards cubic-bezier(.2,.9,.3,1.1)}
+@keyframes up{from{opacity:0;transform:translateY(46px) scale(.96)}}
+.k{font-size:.85rem;font-weight:800;letter-spacing:.35em;text-transform:uppercase;color:var(--p3);margin-bottom:1.2vh}
+h2{font-size:clamp(2rem,4.8vw,4rem);font-weight:900;letter-spacing:-.02em;line-height:1.05;margin-bottom:3vh}
+.holo{background:linear-gradient(90deg,#b388ff,#ff7ad9,#7df9ff,#b388ff);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:ho 6s linear infinite}
+@keyframes ho{to{background-position:300% 0}}
+p{font-size:clamp(1.05rem,1.8vw,1.55rem);line-height:1.55;color:#e6d8ff}
+.glass{background:rgba(40,12,90,.55);border:1px solid rgba(190,150,255,.4);border-radius:24px;padding:22px 28px;backdrop-filter:blur(12px);box-shadow:0 16px 50px rgba(0,0,0,.35),inset 0 0 30px rgba(179,136,255,.08)}
+/* 1 */
+.t1{font-size:clamp(7rem,27vw,22rem);font-weight:900;line-height:.82;letter-spacing:-.05em;filter:drop-shadow(0 0 40px rgba(179,136,255,.8));margin-left:-.03em}
+.ko{font-size:clamp(1.4rem,3.2vw,2.8rem);font-weight:800;letter-spacing:.12em;margin-top:2vh}
+.hint{margin-top:3vh;font-size:.82rem;color:var(--mu);animation:bk 2s infinite}@keyframes bk{50%{opacity:.35}}
+/* 2 eq */
+.eq{display:flex;gap:1.4vw;align-items:flex-end;height:36vh;margin-bottom:2vh}
+.pl{flex:1;height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;cursor:pointer}
+.pl .bar{width:100%;height:42%;border-radius:16px 16px 5px 5px;background:linear-gradient(to top,var(--c),rgba(255,255,255,.9));box-shadow:0 0 24px var(--c);animation:eq var(--d) ease-in-out infinite;transition:filter .3s;opacity:.75}
+@keyframes eq{50%{height:var(--h)}}
+.pl.on .bar,.pl:hover .bar{animation:none;height:100%;opacity:1;box-shadow:0 0 50px var(--c)}
+.pl span{margin-top:10px;font-weight:900;font-size:clamp(1rem,1.9vw,1.7rem)}
+.pl.on span{color:var(--c);text-shadow:0 0 16px var(--c)}
+.inf b{font-size:clamp(1.6rem,3.2vw,2.8rem)}.inf p{margin-top:4px}
+/* 3 setlist */
+.sg{display:grid;grid-template-columns:1fr 1.3fr;gap:3vw;align-items:center}
+.tr{display:flex;gap:14px;align-items:center;padding:1vh 16px;border-radius:14px;cursor:pointer;transition:.3s;font-size:clamp(1rem,1.7vw,1.45rem);color:var(--mu)}
+.tr small{font:700 .75em monospace;opacity:.7;width:2em}.tr b{color:#fff;min-width:2.8em}
+.tr.on{background:linear-gradient(90deg,rgba(179,136,255,.45),rgba(255,122,217,.15));transform:translateX(12px);color:#fff}
+.tr i{margin-left:auto;display:none;gap:3px;align-items:flex-end;height:18px}.tr.on i{display:flex}
+.tr i u{width:4px;background:var(--p3);animation:eq2 .6s infinite alternate;height:6px}.tr i u:nth-child(2){animation-delay:.2s}.tr i u:nth-child(3){animation-delay:.4s}
+@keyframes eq2{to{height:18px}}
+.dt{min-height:44vh;display:flex;flex-direction:column;justify-content:center}
+.yr{font-size:clamp(5rem,13vw,10rem);font-weight:900;line-height:.9;color:transparent;-webkit-text-stroke:3px var(--p1);filter:drop-shadow(0 0 20px rgba(179,136,255,.6))}
+.dt h3{font-size:clamp(1.6rem,3vw,2.6rem);margin:8px 0}
+.dt>*{animation:up .6s backwards}
+/* 4 vinilos */
+.vs{display:flex;justify-content:center;gap:1.6vw;margin:1vh 0 3vh;flex-wrap:wrap}
+.vw{text-align:center;cursor:pointer;width:clamp(80px,10.5vw,170px)}
+.dk{width:100%;aspect-ratio:1;border-radius:50%;background:repeating-radial-gradient(circle,#0b0b12 0 2px,#1d1d2b 2px 4px);display:flex;align-items:center;justify-content:center;animation:sp 10s linear infinite;transition:transform .4s,box-shadow .4s;box-shadow:0 10px 24px rgba(0,0,0,.5)}
+.dk b{width:36%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff3,transparent),var(--c);display:flex;align-items:center;justify-content:center;font-size:clamp(.7rem,1.2vw,1.1rem);color:#1a0838;font-weight:900;border:3px solid #0b0b12}
+@keyframes sp{to{transform:rotate(360deg)}}
+.vw.on .dk{animation-duration:2.6s;transform:scale(1.18);box-shadow:0 0 50px var(--c)}
+.vw span{display:block;margin-top:10px;font-size:clamp(.7rem,1.05vw,.95rem);font-weight:800;color:var(--mu)}.vw.on span{color:#fff}
+/* 5 */
+.st{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:3vh}
+.st .glass{text-align:center;padding:20px 12px;transition:.3s}.st .glass:hover{transform:translateY(-8px);border-color:var(--p3)}
+.st b{font-size:clamp(2.4rem,5.4vw,4.6rem);font-weight:900;display:block;line-height:1}
+.st span{font-size:clamp(.85rem,1.3vw,1.15rem);color:var(--mu);display:block;margin-top:6px;line-height:1.35}
+.ch{display:inline-block;padding:9px 20px;border-radius:30px;background:rgba(179,136,255,.18);border:1px solid var(--p1);margin:0 10px 12px 0;font-weight:700;font-size:clamp(.9rem,1.4vw,1.2rem)}
+.sl.on .ch{animation:pp .5s backwards cubic-bezier(.2,1.5,.4,1)}@keyframes pp{from{opacity:0;transform:scale(.3)}}
+@media(max-width:800px){.st{grid-template-columns:1fr 1fr}.sg,.g2{grid-template-columns:1fr}}
+/* 6 */
+.g2{display:grid;grid-template-columns:1.1fr 1fr;gap:3vw;align-items:center}
+.lights{display:grid;grid-template-columns:repeat(10,1fr);gap:1.1vw;padding:20px;position:relative}
+.lt{aspect-ratio:1;border-radius:50%;background:var(--p1);box-shadow:0 0 14px var(--p1);animation:lt 2.2s ease-in-out infinite;animation-delay:calc(var(--d)*.12s)}
+@keyframes lt{0%,100%{opacity:.18;transform:scale(.7)}50%{opacity:1;transform:scale(1.15);background:#fff}}
+.lights.fast .lt{animation-duration:.7s}
+.bt{margin-top:18px;font-weight:900;font-size:clamp(1rem,1.6vw,1.4rem);font-family:inherit;color:#fff;background:linear-gradient(90deg,var(--p2),var(--p3));border:0;border-radius:40px;padding:14px 30px;cursor:pointer;box-shadow:0 10px 30px rgba(255,122,217,.45);transition:.2s}
+.bt:hover{transform:scale(1.07)}
+.hr{position:fixed;bottom:16vh;font-size:2.2rem;pointer-events:none;z-index:15;animation:fy 2.8s forwards ease-out}
+@keyframes fy{to{transform:translateY(-70vh) rotate(var(--r));opacity:0}}
+/* 7 */
+.bor{font-size:clamp(3.4rem,11vw,9rem);font-weight:900;line-height:1;margin:1vh 0}
+.tour{display:flex;gap:18px;flex-wrap:wrap;margin:2vh 0}
+.tour .glass{padding:16px 24px;text-align:center}.tour b{font-size:clamp(1.8rem,3.4vw,3rem);display:block}.tour span{color:var(--mu);font-size:.95rem}
+.src{font-size:.78rem;color:var(--mu);opacity:.8;margin-top:1.5vh}
+/* reproductor */
+#pl{position:fixed;left:50%;bottom:3vh;transform:translateX(-50%);width:min(940px,92vw);z-index:20;display:grid;grid-template-columns:auto 1fr auto auto;gap:18px;align-items:center;padding:12px 20px;background:rgba(25,6,60,.82);border:1px solid rgba(190,150,255,.45);border-radius:26px;backdrop-filter:blur(16px);box-shadow:0 14px 50px rgba(0,0,0,.5)}
+#art{width:54px;height:54px;border-radius:14px;background:linear-gradient(135deg,var(--p2),var(--p3));display:flex;align-items:center;justify-content:center;font-size:1.7rem}
+#art.spin{animation:sp 4s linear infinite;border-radius:50%}
+#tt{min-width:0}#tt b{display:block;font-size:1.05rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#tt small{color:var(--mu);font-size:.8rem}
+#pr{height:6px;background:rgba(255,255,255,.2);border-radius:6px;margin-top:8px;overflow:hidden;cursor:pointer}#pr i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--p1),var(--p3));border-radius:6px;transition:width .7s}
+#ct{display:flex;gap:6px}#ct button{width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.1);color:#fff;font-size:1.15rem;cursor:pointer;transition:.2s}#ct button:hover{background:var(--p2);transform:scale(1.1)}#ct #pp{background:#fff;color:#2a0a60}
+#nm{font:700 .9rem monospace;color:var(--mu)}
+@media(max-width:700px){#nm{display:none}#pl{grid-template-columns:auto 1fr auto}}
+
+/* panel de música */
+#mp{position:fixed;left:50%;bottom:calc(3vh + 96px);transform:translate(-50%,20px);width:min(540px,92vw);z-index:19;background:rgba(25,6,60,.94);border:1px solid rgba(190,150,255,.5);border-radius:22px;padding:18px 20px;backdrop-filter:blur(16px);opacity:0;pointer-events:none;transition:.35s;display:flex;flex-direction:column;gap:10px;font-size:.95rem;box-shadow:0 14px 50px rgba(0,0,0,.5)}
+#mp.open{opacity:1;pointer-events:auto;transform:translate(-50%,0)}
+.mbt{background:linear-gradient(90deg,var(--p2),var(--p3));color:#fff;border:0;border-radius:30px;padding:10px 18px;font-weight:800;cursor:pointer;font-family:inherit;font-size:.95rem}
+.mbt:hover{filter:brightness(1.2)}
+#mp input[type=text]{flex:1;min-width:0;background:rgba(255,255,255,.08);border:1px solid var(--p1);border-radius:30px;padding:10px 16px;color:#fff;font-family:inherit;outline:0}
+#mp .row{display:flex;gap:8px;align-items:center}
+#mn{color:var(--mu);font-size:.82rem;line-height:1.35}
+#mp input[type=range]{flex:1;accent-color:#ff7ad9}
+</style>
+</head>
+<body>
+<canvas id="cv"></canvas><div class="beam b1"></div><div class="beam b2"></div><div class="beam b3"></div><div id="fx"></div>
+
+<!-- 1 -->
+<section class="sl" data-t="Intro" data-s="방탄소년단">
+  <div class="k a">Presentación</div>
+  <div class="t1 holo a">BTS</div>
+  <div class="ko a">방탄소년단 · Bangtan Sonyeondan</div>
+  <p class="a" style="margin-top:2vh">«Bulletproof Boy Scouts» → «Beyond The Scene» · 7 miembros · Corea del Sur · 2013</p>
+  <p class="hint a">← → espacio · ↑ ↓ en 2, 3 y 4 · A = automático · M = música · F = pantalla completa</p>
+</section>
+
+<!-- 2 -->
+<section class="sl" data-t="Los siete" data-s="Integrantes">
+  <div class="k a">Integrantes</div>
+  <h2 class="a">Los <span class="holo">siete</span></h2>
+  <div class="eq a" id="eq"></div>
+  <div class="glass inf a" id="inf"></div>
+</section>
+
+<!-- 3 -->
+<section class="sl" data-t="Historia" data-s="Setlist 2013 – 2026">
+  <div class="k a">Trayectoria</div>
+  <div class="sg"><div id="tl" class="a"></div><div class="dt glass" id="dt"></div></div>
+</section>
+
+<!-- 4 -->
+<section class="sl" data-t="Discografía" data-s="Siete discos clave">
+  <div class="k a">Música</div>
+  <h2 class="a">Discos que <span class="holo">hicieron historia</span></h2>
+  <div class="vs a" id="vs"></div>
+  <div class="glass inf a" id="vi"></div>
+</section>
+
+<!-- 5 -->
+<section class="sl" data-t="Récords" data-s="Impacto global">
+  <div class="k a">Impacto</div>
+  <h2 class="a">Números y <span class="holo">alcance</span></h2>
+  <div class="st a">
+    <div class="glass"><b class="holo" data-n="6">0</b><span>sencillos #1 en el Billboard Hot 100 (2020–2021)</span></div>
+    <div class="glass"><b class="holo" data-n="7">0</b><span>álbumes #1 en el Billboard 200, con «Arirang»</span></div>
+    <div class="glass"><b class="holo" data-n="4.17" data-d="2">0</b><span>millones de copias de «Arirang» en su primera semana (Hanteo)</span></div>
+    <div class="glass"><b class="holo" data-n="79">0</b><span>conciertos en 34 regiones (gira 2026–2027)</span></div>
+  </div>
+  <div><span class="ch">🌐 RM en la ONU (2018)</span><span class="ch">💜 Love Myself · UNICEF</span><span class="ch">🏟️ Wembley 2019</span><span class="ch">🎬 «BTS: The Return» · Netflix</span></div>
+</section>
+
+<!-- 6 -->
+<section class="sl" data-t="ARMY" data-s="Borahae 보라해">
+  <div class="k a">La fandom</div>
+  <h2 class="a"><span class="holo">ARMY</span> 💜</h2>
+  <div class="g2">
+    <div class="a">
+      <div class="glass" style="margin-bottom:16px"><p><b>A</b>dorable <b>R</b>epresentative <b>M</b>.C. for <b>Y</b>outh: así se llama su fandom desde 2013.</p></div>
+      <div class="glass"><p><b>«Borahae» (보라해)</b> = «I purple you». El morado, último color del arcoíris, simboliza querer a alguien por mucho tiempo. La expresión fue creada por V.</p></div>
+      <button class="bt" id="love">💜 Encender el ARMY Bomb</button>
+    </div>
+    <div class="glass a"><div class="lights" id="lg"></div><p style="text-align:center;font-size:.95rem;color:var(--mu)">El ARMY Bomb: el light stick oficial</p></div>
+  </div>
+</section>
+
+<!-- 7 -->
+<section class="sl" data-t="Gracias" data-s="Gira mundial 2026–2027">
+  <div class="k a">Hoy</div>
+  <div class="bor holo a">보라해</div>
+  <p class="a" style="font-size:clamp(1.3rem,2.6vw,2.3rem);font-weight:800">Borahae · ¡Gracias por escuchar!</p>
+  <div class="tour a"><div class="glass"><b class="holo">79</b><span>conciertos</span></div><div class="glass"><b class="holo">34</b><span>regiones</span></div><div class="glass"><b class="holo">9 abr 2026</b><span>inicio en Goyang, Corea del Sur</span></div></div>
+  <p class="src a">Datos: Billboard, Hanteo Chart, Korea Times y Big Hit Music / HYBE (marzo 2026).</p>
+</section>
+
+<div id="pl"><div id="art">💜</div><div id="tt"><b id="pt"></b><small id="ps"></small><div id="pr"><i></i></div></div><div id="ct"><button id="pv">⏮</button><button id="pp">▶</button><button id="nx">⏭</button><button id="mb" title="Música (M)">🎵</button></div><div id="nm"></div></div>
+
+<div id="mp"><b>🎵 Música para la presentación</b>
+ <button class="mbt" id="m1">▶ Música original (en vivo)</button>
+ <div class="row"><span>🔊</span><input type="range" id="vol" min="0" max="1" step="0.01" value="0.5"></div>
+ <button class="mbt" id="m2">📂 Elegir un archivo de audio tuyo</button><input type="file" id="mf" accept="audio/*" hidden>
+ <div class="row"><input type="text" id="ml" placeholder="Pega un enlace de YouTube o Spotify"><button class="mbt" id="m3">Cargar</button></div>
+ <div id="mfr"></div>
+ <div id="mn">Elige una opción. Las canciones de BTS tienen derechos de autor: usa tu archivo o el enlace oficial.</div></div>
+
+<script>
+const S=[...document.querySelectorAll('.sl')];let i=-1,sel=[0,0,0,0],playing=false,ptm=null;
+// integrantes
+const MB=[["Jin","Kim Seok-jin","Vocalista","1992","#ff6ba6"],["Suga","Min Yoon-gi","Rapero","1993","#c9c9e6"],["j-hope","Jung Ho-seok","Rapero y bailarín","1994","#ff9a3c"],["RM","Kim Nam-joon","Líder y rapero","1994","#6c8cff"],["Jimin","Park Ji-min","Vocalista y bailarín","1995","#ffd166"],["V","Kim Tae-hyung","Vocalista","1995","#7df9c8"],["Jung Kook","Jeon Jung-kook","Vocalista y bailarín","1997","#d58bff"]];
+// historia
+const HI=[["2013","Debut","El 13 de junio debutan con «2 Cool 4 Skool» bajo Big Hit Entertainment (hoy HYBE). Ese verano nace su fandom: ARMY."],
+["2017","Primer premio en EE. UU.","Ganan en los Billboard Music Awards (Top Social Artist): el primer grupo de K-pop en lograrlo. Lanzan la campaña «Love Myself» con UNICEF."],
+["2018","Voz global","«Love Yourself: Tear» debuta #1 en el Billboard 200 y RM habla ante la Asamblea General de la ONU."],
+["2019","Wembley","Llenan el estadio de Wembley, en Londres, durante la gira «Love Yourself: Speak Yourself»."],
+["2020","«Dynamite»","Su primer sencillo #1 en el Billboard Hot 100 y su primera nominación a los Grammy."],
+["2022","«Proof» y pausa","Publican la antología «Proof» y, desde diciembre, los integrantes inician el servicio militar obligatorio."],
+["2025","Reencuentro","Los siete terminan el servicio militar (junio) y el 1 de julio anuncian nuevo álbum y gira mundial."],
+["2026","«Arirang»","El 20 de marzo regresan con su quinto álbum de estudio (14 canciones) y una gira de 79 conciertos."]];
+// discos
+const DI=[["Dark & Wild","2014","#ff6ba6","Su primer álbum de estudio completo en coreano."],["Wings","2016","#7df9ff","Incluye «Blood Sweat & Tears»; cada integrante aporta un tema en solitario."],["Love Yourself: Her","2017","#ffd166","Abre la serie «Love Yourself», con «DNA» y «Mic Drop»."],["Map of the Soul: 7","2020","#b388ff","Récord de 3,37 millones de copias en su primera semana (Hanteo), hasta 2026."],["BE","2020","#7df9c8","Incluye «Life Goes On», #1 en el Hot 100; un disco muy personal."],["Proof","2022","#ff9a3c","Antología de 3 discos que repasa toda su carrera."],["Arirang","2026","#ff7ad9","14 canciones. Debuta #1 en el Billboard 200 con 641 000 unidades; «Swim» es el sencillo principal."]];
+// construir
+const eq=document.getElementById('eq'),inf=document.getElementById('inf');
+MB.forEach((m,k)=>{const d=document.createElement('div');d.className='pl';d.style.cssText=`--c:${m[4]};--d:${.7+k*.13}s;--h:${60+(k*37%40)}%`;d.innerHTML=`<div class="bar" style="animation-delay:${-k*.17}s"></div><span>${m[0]}</span>`;d.onclick=d.onmouseenter=()=>{stopAuto();s0(k)};eq.appendChild(d)});
+function s0(k){sel[0]=(k+7)%7;[...eq.children].forEach((d,j)=>d.classList.toggle('on',j==sel[0]));const m=MB[sel[0]];inf.innerHTML=`<b style="color:${m[4]}">${m[0]}</b> <span style="color:var(--mu)">· ${m[1]} · n. ${m[3]}</span><p>${m[2]}</p>`}
+const tl=document.getElementById('tl'),dt=document.getElementById('dt');
+HI.forEach((h,k)=>{const d=document.createElement('div');d.className='tr';d.innerHTML=`<small>0${k+1}</small><b>${h[0]}</b>${h[1]}<i><u></u><u></u><u></u></i>`;d.onclick=()=>{stopAuto();s1(k)};tl.appendChild(d)});
+function s1(k){sel[1]=(k+8)%8;[...tl.children].forEach((d,j)=>d.classList.toggle('on',j==sel[1]));const h=HI[sel[1]];dt.innerHTML=`<div class="yr">${h[0]}</div><h3 class="holo">${h[1]}</h3><p>${h[2]}</p>`;[...dt.children].forEach((e,j)=>e.style.animationDelay=j*.1+'s')}
+const vs=document.getElementById('vs'),vi=document.getElementById('vi');
+DI.forEach((d,k)=>{const v=document.createElement('div');v.className='vw';v.style.setProperty('--c',d[2]);v.innerHTML=`<div class="dk"><b>${d[1]}</b></div><span>${d[0]}</span>`;v.onclick=v.onmouseenter=()=>{stopAuto();s2(k)};vs.appendChild(v)});
+function s2(k){sel[2]=(k+7)%7;[...vs.children].forEach((d,j)=>d.classList.toggle('on',j==sel[2]));const d=DI[sel[2]];vi.innerHTML=`<b style="color:${d[2]};font-size:clamp(1.5rem,3vw,2.6rem)">${d[0]}</b> <span style="color:var(--mu)">· ${d[1]}</span><p>${d[3]}</p>`}
+const lg=document.getElementById('lg');for(let r=0;r<6;r++)for(let c=0;c<10;c++){const l=document.createElement('div');l.className='lt';l.style.setProperty('--d',c+r);lg.appendChild(l)}
+document.getElementById('love').onclick=()=>{lg.classList.add('fast');setTimeout(()=>lg.classList.remove('fast'),3500);for(let k=0;k<24;k++){const h=document.createElement('span');h.className='hr';h.textContent='💜';h.style.left=Math.random()*94+'vw';h.style.setProperty('--r',(Math.random()*80-40)+'deg');h.style.animationDelay=Math.random()*.9+'s';document.body.appendChild(h);setTimeout(()=>h.remove(),4000)}};
+// contadores
+function count(el){const n=+el.dataset.n,dd=+(el.dataset.d||0),t0=performance.now();(function f(t){const k=Math.min(1,(t-t0)/1500);el.textContent=(n*(1-Math.pow(1-k,3))).toFixed(dd);if(k<1)requestAnimationFrame(f)})(t0)}
+// estrellas y corazones
+const cv=document.getElementById('cv'),cx=cv.getContext('2d');let W,H,ST=[],HR=[];
+function rs(){W=cv.width=innerWidth;H=cv.height=innerHeight;ST=Array.from({length:150},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.8+.3,p:Math.random()*6.3,s:Math.random()*.04+.01}));HR=Array.from({length:12},()=>({x:Math.random()*W,y:Math.random()*H,v:.3+Math.random()*.6,z:14+Math.random()*26,p:Math.random()*6}))}rs();addEventListener('resize',rs);
+(function lp(){cx.clearRect(0,0,W,H);ST.forEach(s=>{s.p+=s.s;cx.fillStyle=`rgba(235,220,255,${.25+.75*Math.abs(Math.sin(s.p))})`;cx.beginPath();cx.arc(s.x,s.y,s.r,0,6.3);cx.fill()});
+ cx.globalAlpha=.3;HR.forEach(h=>{h.y-=h.v;h.p+=.02;if(h.y<-40){h.y=H+40;h.x=Math.random()*W}cx.font=h.z+'px serif';cx.fillText('💜',h.x+Math.sin(h.p)*18,h.y)});cx.globalAlpha=1;requestAnimationFrame(lp)})();
+// reproductor
+const pt=document.getElementById('pt'),ps=document.getElementById('ps'),pbar=document.querySelector('#pr i');
+S.forEach(s=>s.querySelectorAll('.a').forEach((e,k)=>e.style.animationDelay=(.25+k*.14)+'s'));
+let auto=true;function stopAuto(){auto=false}
+function setPlay(v){playing=v;document.getElementById('pp').textContent=v?'⏸':'▶';updArt();clearInterval(ptm);if(v)ptm=setInterval(()=>{i<S.length-1?go(i+1):setPlay(false)},12000)}
+function go(n){n=Math.max(0,Math.min(S.length-1,n));if(n==i)return;const first=i<0;i=n;auto=true;
+ S.forEach((s,k)=>{s.classList.toggle('on',k==i);s.classList.toggle('out',k<i)});
+ if(!first){const f=document.getElementById('fx');f.classList.remove('go');void f.offsetWidth;f.classList.add('go')}
+ pt.textContent=`${String(i+1).padStart(2,'0')} · ${S[i].dataset.t}`;ps.textContent=S[i].dataset.s;document.getElementById('nm').textContent=`💜 ${i+1} / ${S.length}`;pbar.style.width=((i+1)/S.length*100)+'%';
+ if(i==1)s0(0);if(i==2)s1(0);if(i==3)s2(0);
+ if(i==4)S[4].querySelectorAll('[data-n]').forEach(count)}
+setInterval(()=>{if(!auto)return;if(i==1)s0(sel[0]+1);if(i==2)s1(sel[1]+1);if(i==3)s2(sel[2]+1)},3200);
+document.getElementById('nx').onclick=()=>go(i+1);document.getElementById('pv').onclick=()=>go(i-1);document.getElementById('pp').onclick=()=>setPlay(!playing);
+document.getElementById('pr').onclick=e=>{const r=e.currentTarget.getBoundingClientRect();go(Math.floor((e.clientX-r.left)/r.width*S.length))};
+document.querySelectorAll('button').forEach(b=>b.addEventListener('mousedown',e=>e.preventDefault()));
+function fs(){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}
+addEventListener('keydown',e=>{const k=e.key;
+ if(e.target.tagName=='INPUT')return;
+ if(k=='m'||k=='M'){mp.classList.toggle('open');return}
+ if((k=='ArrowDown'||k=='ArrowUp')&&i>=1&&i<=3){e.preventDefault();stopAuto();const d=k=='ArrowDown'?1:-1;[s0,s1,s2][i-1](sel[i-1]+d);return}
+ if(['ArrowRight','ArrowDown','PageDown',' ','Enter','n'].includes(k)){e.preventDefault();go(i+1)}
+ else if(['ArrowLeft','ArrowUp','PageUp','Backspace','p'].includes(k)){e.preventDefault();go(i-1)}
+ else if(k=='Home')go(0);else if(k=='End')go(S.length-1);
+ else if(k=='a'||k=='A')setPlay(!playing);
+ else if(k=='f'||k=='F')fs();
+ else if(k>='1'&&k<='7')go(+k-1)},true);
+let tx=0;document.addEventListener('touchstart',e=>tx=e.touches[0].clientX);document.addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>50)go(i+(d<0?1:-1))});
+// ===== MÚSICA =====
+let AC=null,mg=null,fxb=null,tmr=null,stp=0,nxt=0,musicOn=false,aud=null,nz=null;
+const mp=document.getElementById('mp'),mn=document.getElementById('mn'),vol=document.getElementById('vol'),m1=document.getElementById('m1'),ml=document.getElementById('ml');
+document.getElementById('mb').onclick=()=>mp.classList.toggle('open');
+function updArt(){document.getElementById('art').className=(playing||musicOn)?'spin':''}
+const fq=n=>440*Math.pow(2,(n-69)/12);
+function initAC(){if(AC)return;AC=new (window.AudioContext||window.webkitAudioContext)();const cp=AC.createDynamicsCompressor();mg=AC.createGain();mg.gain.value=+vol.value;mg.connect(cp);cp.connect(AC.destination);
+ fxb=AC.createGain();const dl=AC.createDelay(1),fb=AC.createGain();dl.delayTime.value=.3;fb.gain.value=.35;fxb.connect(dl);dl.connect(fb);fb.connect(dl);dl.connect(mg);
+ nz=AC.createBuffer(1,AC.sampleRate,AC.sampleRate);const d=nz.getChannelData(0);for(let k=0;k<d.length;k++)d[k]=Math.random()*2-1}
+function tone(f,t,d,type,v,lp,att,send){const o=AC.createOscillator(),g=AC.createGain();o.type=type;o.frequency.value=f;g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(v,t+(att||.01));g.gain.exponentialRampToValueAtTime(.0001,t+d);let n=o;if(lp){const b=AC.createBiquadFilter();b.type='lowpass';b.frequency.value=lp;o.connect(b);n=b}n.connect(g);g.connect(mg);if(send)g.connect(fxb);o.start(t);o.stop(t+d+.05)}
+function kick(t){const o=AC.createOscillator(),g=AC.createGain();o.frequency.setValueAtTime(150,t);o.frequency.exponentialRampToValueAtTime(40,t+.15);g.gain.setValueAtTime(.9,t);g.gain.exponentialRampToValueAtTime(.001,t+.25);o.connect(g);g.connect(mg);o.start(t);o.stop(t+.3)}
+function hit(t,d,v,hp){const s=AC.createBufferSource();s.buffer=nz;const b=AC.createBiquadFilter();b.type='highpass';b.frequency.value=hp;const g=AC.createGain();g.gain.setValueAtTime(v,t);g.gain.exponentialRampToValueAtTime(.0001,t+d);s.connect(b);b.connect(g);g.connect(mg);s.start(t);s.stop(t+d+.02)}
+const CH=[[57,60,64],[53,57,60],[48,52,55],[55,59,62]],SQ=[0,1,2,1,2,1,0,1];
+function sch(s,t){const ch=CH[(s>>4)%4],k=s%16;
+ if(k==0)ch.forEach(n=>tone(fq(n),t,2.3,'sawtooth',.04,900,.35));
+ if(k%4==0)kick(t);if(k==4||k==12)hit(t,.14,.3,1500);if(k%4==2)hit(t,.05,.1,7000);
+ if(k==0||k==6||k==10)tone(fq(ch[0]-12),t,.34,'sawtooth',.2,500);
+ if(k%2==0)tone(fq(ch[SQ[k/2]]+12),t,.28,'square',.045,2200,.005,true)}
+function startMusic(){stopAll();initAC();AC.resume();stp=0;nxt=AC.currentTime+.1;tmr=setInterval(()=>{while(nxt<AC.currentTime+.2){sch(stp,nxt);nxt+=60/104/4;stp++}},30);musicOn=true;mn.textContent='♪ Sonando: música original en vivo (synth-pop en La menor, 104 BPM)';m1.textContent='⏸ Detener música original';updArt()}
+function stopAll(){clearInterval(tmr);tmr=null;musicOn=false;if(aud){aud.pause();aud=null}document.getElementById('mfr').innerHTML='';m1.textContent='▶ Música original (en vivo)';updArt()}
+m1.onclick=()=>{if(tmr){stopAll();mn.textContent='Música detenida.'}else startMusic()};
+vol.oninput=()=>{const v=+vol.value;if(mg)mg.gain.value=v;if(aud)aud.volume=v};
+document.getElementById('m2').onclick=()=>document.getElementById('mf').click();
+document.getElementById('mf').onchange=e=>{const f=e.target.files[0];if(!f)return;stopAll();aud=new Audio(URL.createObjectURL(f));aud.loop=true;aud.volume=+vol.value;aud.play().catch(()=>{});musicOn=true;mn.textContent='♪ Sonando tu archivo: '+f.name;updArt()};
+function loadLink(){const u=ml.value.trim();let src='',h=152,m;
+ if(m=u.match(/spotify\.com\/(?:intl-[a-z]+\/)?(track|album|playlist|artist|episode)\/([A-Za-z0-9]+)/))src='https://open.spotify.com/embed/'+m[1]+'/'+m[2];
+ else if(m=u.match(/(?:youtu\.be\/|[?&]v=|embed\/|shorts\/)([\w-]{11})/)){src='https://www.youtube.com/embed/'+m[1]+'?autoplay=1';h=200}
+ else if(m=u.match(/[?&]list=([\w-]+)/)){src='https://www.youtube.com/embed/videoseries?list='+m[1];h=200}
+ if(!src){mn.textContent='Pega un enlace válido de YouTube o Spotify.';return}
+ stopAll();document.getElementById('mfr').innerHTML='<iframe src="'+src+'" height="'+h+'" allow="autoplay; encrypted-media; fullscreen" style="width:100%;border:0;border-radius:14px;margin-top:6px"></iframe>';mn.textContent='♪ Reproductor oficial cargado (requiere Internet).'}
+document.getElementById('m3').onclick=loadLink;ml.addEventListener('keydown',e=>{if(e.key=='Enter')loadLink()});
+window.focus();go(0);
+</script>
+</body>
+</html>
